@@ -1,160 +1,815 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanwaya Koner | PhD Scholar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Space+Mono&display=swap');
-        
-        body { 
-            background-color: #050a0a; 
-            color: #d1d5db; 
-            font-family: 'Inter', sans-serif;
-        }
-        .emerald-gradient { 
-            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-        .nav-blur { 
-            background: rgba(5, 10, 10, 0.8); 
-            backdrop-filter: blur(10px); 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-        }
-        .card { 
-            background: #0d1414; 
-            border: 1px solid #1a2424; 
-            transition: all 0.3s ease;
-        }
-        .card:hover { 
-            border-color: #10b981; 
-            transform: translateY(-2px); 
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Sanwaya Koner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Coffee-inspired aesthetic -->
+  <style>
+    :root {
+      --coffee-dark: #3b2a2a;
+      --coffee-mid: #6b4f3f;
+      --coffee-cream: #f3e5d8;
+      --coffee-milk: #e0cbb5;
+      --coffee-accent: #c08457;
+      --text-main: #2a1c16;
+      --text-light: #fdf7f0;
+      --card-bg: #f8efe6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f7ede2 0, #e2c9ac 40%, #b08968 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--coffee-accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--coffee-dark), var(--coffee-mid));
+      color: var(--text-light);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .brand-name {
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .brand-tag {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(243, 229, 216, 0.4);
+      background: rgba(243, 229, 216, 0.1);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-link.active {
+      background: var(--coffee-accent);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-link:hover {
+      transform: translateY(-1px);
+      background: rgba(243, 229, 216, 0.2);
+    }
+
+    main {
+      flex: 1;
+      max-width: 1000px;
+      width: 100%;
+      margin: 1.5rem auto 2.5rem auto;
+      padding: 0 1.2rem;
+    }
+
+    .card {
+      background: rgba(248, 239, 230, 0.95);
+      border-radius: 18px;
+      padding: 1.5rem 1.7rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 2.5fr 1.5fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--coffee-mid);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-text {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      background: var(--coffee-milk);
+      color: var(--coffee-dark);
+    }
+
+    .hero-aside {
+      background: radial-gradient(circle at top left, var(--coffee-cream), var(--coffee-milk));
+      border-radius: 16px;
+      padding: 0.9rem 0.9rem 1rem 0.9rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-aside::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.7), transparent 60%);
+      opacity: 0.6;
+    }
+
+    .coffee-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 4px solid var(--coffee-dark);
+      box-shadow:
+        inset 0 0 0 3px var(--coffee-mid),
+        0 4px 12px rgba(0, 0, 0, 0.35);
+      margin-bottom: 0.9rem;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 30% 30%, #d4a373, #8c5b3f, #4a2f26);
+    }
+
+    .coffee-circle::after {
+      content: "";
+      position: absolute;
+      top: 55%;
+      left: -10%;
+      width: 140%;
+      height: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      transform: rotate(-6deg);
+    }
+
+    .hero-aside-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-aside-text {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.3rem;
+    }
+
+    .hero-link-pill {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(59, 42, 42, 0.35);
+      background: rgba(255, 255, 255, 0.55);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--coffee-mid);
+      margin-bottom: 0.8rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.4fr 1.6fr;
+      gap: 1.3rem;
+    }
+
+    .subsection-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--coffee-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline {
+      border-left: 2px solid var(--coffee-mid);
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 0.2rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.15rem;
+      top: 0.28rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--coffee-accent);
+      box-shadow: 0 0 0 4px rgba(192, 132, 87, 0.3);
+    }
+
+    .timeline-role {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .timeline-place {
+      font-size: 0.85rem;
+      color: var(--coffee-mid);
+    }
+
+    .timeline-time {
+      font-size: 0.8rem;
+      color: #7a6a5c;
+      margin-top: 0.1rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .timeline-text {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(224, 203, 181, 0.7);
+    }
+
+    .paper-item, .project-item, .photo-item {
+      padding: 0.6rem 0.7rem;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .paper-item:hover,
+    .project-item:hover,
+    .photo-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+      border-color: rgba(192, 132, 87, 0.7);
+    }
+
+    .paper-title, .project-title, .photo-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .paper-meta, .project-meta, .photo-meta {
+      font-size: 0.8rem;
+      color: #7a6a5c;
+      margin-bottom: 0.1rem;
+    }
+
+    .paper-tags, .project-tags {
+      margin-top: 0.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: #7a6a5c;
+      margin-top: 0.25rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.7rem;
+    }
+
+    .photo-thumb {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #b08968;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #fdf7f0;
+      position: relative;
+    }
+
+    .photo-thumb span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .photo-thumb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.35), transparent),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent);
+      mix-blend-mode: soft-light;
+    }
+
+    .hobby-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+    }
+
+    .hobby-list li::before {
+      content: "✶";
+      margin-right: 0.4rem;
+      color: var(--coffee-accent);
+      font-size: 0.75rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 1.2rem 1.4rem 1.2rem;
+      font-size: 0.8rem;
+      color: #3b2a2a;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 800px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body class="antialiased">
-
-    <nav class="fixed top-0 w-full z-50 nav-blur">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-mono text-sm tracking-tighter font-bold text-emerald-500">AM.ROOT</span>
-            <div class="flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
-                <a href="#about" class="hover:text-emerald-400 transition">About</a>
-                <a href="#projects" class="hover:text-emerald-400 transition">Work</a>
-                <a href="www.linkedin.com/in/sanwayakoner" target="_blank" class="text-emerald-500">LinkedIn</a>
-            </div>
-        </div>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-name">Sanwaya&nbsp;Koner</div>
+      <div class="brand-tag">Decision Science · Coffee · Cameras · Code</div>
+    </div>
+    <nav>
+      <button class="nav-link active" data-section="home">Home</button>
+      <button class="nav-link" data-section="research">Research</button>
+      <button class="nav-link" data-section="projects">Projects</button>
+      <button class="nav-link" data-section="papers">Papers I Read</button>
+      <button class="nav-link" data-section="photography">Photography</button>
+      <button class="nav-link" data-section="about">About</button>
     </nav>
+  </header>
 
-    <header class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
-        <p class="font-mono text-emerald-500 mb-4 tracking-widest uppercase text-sm italic">Data Scientist & LLM Specialist</p>
-        <h1 class="text-6xl md:text-9xl font-black text-white mb-6 tracking-tighter">
-            Hi, I'm <br><span class="emerald-gradient">Sanwaya Koner.</span>
-        </h1>
-        <p class="max-w-2xl text-lg md:text-xl text-gray-400 leading-relaxed mb-10">
-           Decision Science PhD scholar at <b>IIM Udaipur</b>.When I’m not wrestling with models and metrics, I’m behind the camera, 
-            chasing light, people, and stories through my lens. This space is a mix of my work, experiments, obsessions, and portals 
-            to the other corners of the internet where you’ll find me. 
+  <main>
+    <!-- HOME -->
+    <section id="home" class="card">
+      <div class="hero">
+        <div>
+          <div class="hero-subtitle">This is the website of</div>
+          <h1 class="hero-title">Sanwaya&nbsp;Koner</h1>
+          <p class="hero-text">
+            I’m a PhD student in Decision Science at IIM Udaipur, working at the intersection of mathematics,
+            data, and real‑world decision making. This space is where research notes, side projects, and
+            late‑night ideas (powered by too much coffee) end up.
+          </p>
+          <p class="hero-text">
+            I’m slowly building the profile of a future professor who still loves being a learner first.
+          </p>
+          <div class="hero-tags">
+            <span class="chip">Decision Science</span>
+            <span class="chip">Mathematics</span>
+            <span class="chip">Data Analytics</span>
+            <span class="chip">Longitudinal Models</span>
+            <span class="chip">Coffee‑driven</span>
+          </div>
+        </div>
+        <aside class="hero-aside">
+          <div class="coffee-circle"></div>
+          <div class="hero-aside-title">Currently brewing</div>
+          <p class="hero-aside-text">
+            PhD @ IIM Udaipur · Mixed‑effects regression · Longitudinal data · Content & music analytics ·
+            Occasional existential questions over a mug of black coffee.
+          </p>
+          <div class="hero-aside-title" style="margin-top:0.4rem;">Find me</div>
+          <div class="hero-links">
+            <!-- Replace with your real links -->
+            <a href="https://github.com/SanwayaKoner" class="hero-link-pill" target="_blank" rel="noopener noreferrer">
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/sanwayakoner" class="hero-link-pill" target="_blank" rel="noopener noreferrer">
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:sanwayakoner@gmail.com" class="hero-link-pill">
+              <span>Email</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" class="card hidden">
+      <h2 class="section-title">Research</h2>
+      <div class="two-col">
+        <div>
+          <h3 class="subsection-title">Interests</h3>
+          <ul class="list">
+            <li>Mixed‑effects regression models for longitudinal and hierarchical data.</li>
+            <li>Design and efficiency: sample size determination for complex study designs.</li>
+            <li>Applied decision science in content, media, and behavioural analytics.</li>
+            <li>Statistics, optimization, and machine learning as tools for real‑world decisions.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Mixed‑effects models</span>
+            <span class="pill">Longitudinal data</span>
+            <span class="pill">Causal-ish questions</span>
+            <span class="pill">Applied probability</span>
+          </div>
+        </div>
+        <div>
+          <h3 class="subsection-title">Current work</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-role">A Study on Mixed‑Effects Regression Models in Analyzing Longitudinal Data</div>
+              <div class="timeline-place">Supervised by Dr. Priyanka Majumder</div>
+              <div class="timeline-time">Aug 2023 – Present</div>
+              <p class="timeline-text">
+                Exploring how treatment effects evolve over time in multi‑level longitudinal settings, with an eye on
+                sample size planning and efficient model extensions.
+              </p>
+            </div>
+          </div>
+          <p class="note">
+            This section will eventually host preprints, published papers, slides, and teaching material.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card hidden">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid-2">
+        <div>
+          <h3 class="subsection-title">Research projects</h3>
+
+          <!-- Project 1 -->
+          <div class="project-item">
+            <div class="project-title">Mixed‑Effects Models for Longitudinal Data</div>
+            <div class="project-meta">Methodology · Longitudinal analysis · Sample size</div>
+            <p class="timeline-text">
+              Investigating mixed‑effects regression frameworks for four‑level longitudinal data, focusing on
+              estimating treatment intervention effects and required sample size for a target efficiency.
+            </p>
+            <div class="project-tags">
+              <span class="pill">R / Python (future)</span>
+              <span class="pill">Study design</span>
+            </div>
+          </div>
+
+          <!-- Add more research projects as needed -->
+          <p class="note">
+            I’ll keep adding more research projects here as they grow from scribbles to something I can show the world.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="subsection-title">Non‑research projects</h3>
+
+          <!-- Project 1 -->
+          <div class="project-item">
+            <div class="project-title">Music Data Analysis & Metrics Development</div>
+            <div class="project-meta">CrazyTok / Personal · Mar 2024</div>
+            <p class="timeline-text">
+              Built and explored custom metrics like “Momentum” to understand song performance, engagement, and
+              audience behaviour using Excel and platform analytics.
+            </p>
+            <div class="project-tags">
+              <span class="pill">Music analytics</span>
+              <span class="pill">YouTube & Spotify</span>
+              <span class="pill">Excel</span>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-item">
+            <div class="project-title">Content & Podcast Analytics</div>
+            <div class="project-meta">CrazyTok · Data Analyst Intern</div>
+            <p class="timeline-text">
+              Analysed multi‑platform data (YouTube, Spotify, etc.) to identify top‑performing channels, track
+              trends, and help creators make better content decisions.
+            </p>
+            <div class="project-tags">
+              <span class="pill">Dashboards</span>
+              <span class="pill">Audience behaviour</span>
+            </div>
+          </div>
+
+          <!-- Add more non-research projects -->
+        </div>
+      </div>
+    </section>
+
+    <!-- PAPERS I READ -->
+    <section id="papers" class="card hidden">
+      <h2 class="section-title">Papers I Read</h2>
+      <p class="hero-text" style="margin-bottom:0.7rem;">
+        A living reading log. Click a paper to open my notes in‑place. Right now everything is placeholder — swap
+        these with real references and thoughts as you go.
+      </p>
+
+      <div id="paper-list-view">
+        <div class="paper-item" onclick="openPaper('paper1')">
+          <div class="paper-title">[Example] Mixed‑Effects Models in Longitudinal Settings</div>
+          <div class="paper-meta">Journal of Hypothetical Methods · 20XX</div>
+          <p class="timeline-text">
+            Notes on random effects structures, correlation, and how we trade off complexity vs interpretability.
+          </p>
+          <div class="paper-tags">
+            <span class="pill">Longitudinal</span>
+            <span class="pill">Mixed‑effects</span>
+          </div>
+        </div>
+
+        <div class="paper-item" onclick="openPaper('paper2')">
+          <div class="paper-title">[Example] Sample Size Planning for Multi‑Level Studies</div>
+          <div class="paper-meta">Somewhere Nice · 20XX</div>
+          <p class="timeline-text">
+            Thinking about power, efficiency, and what “good enough” looks like in messy real‑world designs.
+          </p>
+          <div class="paper-tags">
+            <span class="pill">Study design</span>
+            <span class="pill">Power</span>
+          </div>
+        </div>
+
+        <p class="note">
+          Replace these cards with actual references and customise the detail view content below.
         </p>
-        <div class="flex gap-4">
-            <a href="mailto:sanwayakoner@gmail.com" class="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-4 rounded-full font-bold transition">
-                Let's Collaborate
-            </a>
-        </div>
-        
-        <div class="mt-20 animate-bounce text-slate-700">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </header>
+      </div>
 
-    <section class="max-w-5xl mx-auto px-6 py-12 border-y border-slate-900">
-        <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition duration-500">
-            <span class="font-bold tracking-widest text-xs">IIM Udaipur</span>
-            <span class="font-bold tracking-widest text-xs">IISER TVM</span>
-            <span class="font-bold tracking-widest text-xs">ISI DELHI</span>
-            <span class="font-bold tracking-widest text-xs">CrazyTok</span>
+      <!-- Paper detail views (single-page “navigation”) -->
+      <div id="paper-detail-view" class="hidden">
+        <button class="nav-link" style="margin-bottom:0.7rem;" onclick="backToPaperList()">← Back to list</button>
+        <div id="paper1" class="paper-detail hidden">
+          <h3 class="subsection-title">[Example] Mixed‑Effects Models in Longitudinal Settings</h3>
+          <p class="timeline-text">
+            Here you can write your own summary, key ideas, and critiques. Think of this as a mini blog post:
+            what you liked, what confused you, and how it connects to your work.
+          </p>
+          <ul class="list">
+            <li>One or two sentences on the problem setup.</li>
+            <li>Key methods and any assumptions that stood out to you.</li>
+            <li>How this paper influences your own research thinking.</li>
+          </ul>
         </div>
+
+        <div id="paper2" class="paper-detail hidden">
+          <h3 class="subsection-title">[Example] Sample Size Planning for Multi‑Level Studies</h3>
+          <p class="timeline-text">
+            Another space for your annotated reading — derivations you liked, questions you still have, or diagrams
+            you might recreate later in LaTeX.
+          </p>
+          <ul class="list">
+            <li>What is the main contribution?</li>
+            <li>Where would you apply this in your own work?</li>
+            <li>Any limitations or assumptions that you’re skeptical about?</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section id="about" class="max-w-5xl mx-auto px-6 py-32">
-        <div class="grid md:grid-cols-2 gap-20">
-            <div>
-                <h3 class="text-sm font-mono text-emerald-500 mb-6 uppercase tracking-widest">// Technical Expertise</h3>
-                <div class="space-y-6">
-                    <div>
-                        <h4 class="text-white font-bold mb-2">LLM & Multimodal AI</h4>
-                        <p class="text-sm text-gray-500">RAG validation, RLHF rubrics, and adversarial prompt engineering.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-bold mb-2">Advanced Mathematics</h4>
-                        <p class="text-sm text-gray-500">Linear Algebra (ISI Delhi Research), Fractal Analysis, and Probability.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-bold mb-2">Data Stack</h4>
-                        <p class="text-sm text-gray-500">Python (Pandas/NumPy), R, SQL, Power BI, and LaTeX.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <h3 class="text-sm font-mono text-emerald-500 mb-6 uppercase tracking-widest">// Recent Milestones</h3>
-                <div class="border-l border-emerald-900/50 pl-8 space-y-10">
-                    <div>
-                        <span class="text-[10px] font-bold text-emerald-500 block mb-1">2024 — PRESENT</span>
-                        <h4 class="text-white font-bold">Analyst @ Turing Enterprise</h4>
-                        <p class="text-sm text-gray-500">Top 5% analyst for model evaluation. Specialized in human-AI interaction accuracy.</p>
-                    </div>
-                    <div>
-                        <span class="text-[10px] font-bold text-slate-600 block mb-1">2025</span>
-                        <h4 class="text-white font-bold">AIR 28 — ISI MS QMS</h4>
-                        <p class="text-sm text-gray-500">Ranked top 30 in India for the prestigious Statistical Institute entrance.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- PHOTOGRAPHY -->
+    <section id="photography" class="card hidden">
+      <h2 class="section-title">Photography</h2>
+      <p class="hero-text">
+        Before the models and matrices, there was a camera. Photography is still my first love — the way I slow
+        down, frame the world, and remember that not everything needs a p‑value.
+      </p>
+
+      <div class="two-col">
+        <div>
+          <h3 class="subsection-title">Current idea</h3>
+          <p class="timeline-text">
+            This section will eventually evolve into a small portfolio: curated albums, maybe a contact sheet for
+            favourite shots, and links out to wherever I host full‑resolution work.
+          </p>
+          <p class="timeline-text">
+            For now, consider this a placeholder for street photos, campus life, and all the unplanned frames that
+            happen between coffee and code.
+          </p>
+          <p class="note">
+            You can later replace the blocks on the right with real images using <code>&lt;img&gt;</code> tags.
+          </p>
         </div>
+        <div>
+          <h3 class="subsection-title">Sample layout</h3>
+          <div class="photo-grid">
+            <div class="photo-thumb"><span>Street · Night</span></div>
+            <div class="photo-thumb"><span>Campus · Monsoon</span></div>
+            <div class="photo-thumb"><span>Light & Shadow</span></div>
+            <div class="photo-thumb"><span>People & Motion</span></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="projects" class="max-w-5xl mx-auto px-6 py-32">
-        <h3 class="text-4xl font-black text-white mb-16">Selected <span class="text-emerald-500">Projects.</span></h3>
-        <div class="grid md:grid-cols-2 gap-8">
-            
-            <a href="https://g1la0x-arushimarwaha.shinyapps.io/Customer_Dashboard/" target="_blank" class="card p-10 rounded-3xl group">
-                <div class="flex justify-between items-start mb-8">
-                    <i class="fas fa-chart-line text-3xl text-emerald-500"></i>
-                    <i class="fas fa-arrow-up-right-from-square text-slate-700 group-hover:text-emerald-500 transition"></i>
-                </div>
-                <h4 class="text-2xl font-bold text-white mb-4">Customer Behavior Dashboard</h4>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6">Predictive modeling using R/Shiny to identify consumer trends and segmentation patterns.</p>
-                <div class="flex gap-4 font-mono text-[10px] text-emerald-500">
-                    <span>#R-SHINY</span> <span>#PREDICTIVE</span>
-                </div>
-            </a>
-
-            <div class="card p-10 rounded-3xl opacity-60">
-                <div class="flex justify-between items-start mb-8">
-                    <i class="fas fa-dna text-3xl text-slate-600"></i>
-                </div>
-                <h4 class="text-2xl font-bold text-white mb-4">Masters Dissertation</h4>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6">Adaptive fractal dimension analysis and CNN feature extraction pipeline at CMI.</p>
-                <div class="flex gap-4 font-mono text-[10px] text-slate-600">
-                    <span>#DEEP_LEARNING</span> <span>#CMI</span>
-                </div>
-            </div>
-
+    <!-- ABOUT -->
+    <section id="about" class="card hidden">
+      <h2 class="section-title">About</h2>
+      <div class="two-col">
+        <div>
+          <h3 class="subsection-title">Path so far</h3>
+          <ul class="timeline">
+            <li class="timeline-item">
+              <div class="timeline-role">PhD in Decision Science</div>
+              <div class="timeline-place">Indian Institute of Management, Udaipur</div>
+              <div class="timeline-time">2025 – Present</div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-role">MSc in Mathematics</div>
+              <div class="timeline-place">IISER Thiruvananthapuram</div>
+              <div class="timeline-time">2022 – 2024</div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-role">BSc (Hons) in Mathematics</div>
+              <div class="timeline-place">University of Calcutta</div>
+              <div class="timeline-time">2018 – 2021</div>
+            </li>
+          </ul>
         </div>
+        <div>
+          <h3 class="subsection-title">Outside the office</h3>
+          <ul class="hobby-list">
+            <li>Photography — especially candid moments, city textures, and quiet spaces that most people walk past.</li>
+            <li>Football — watching, over‑analysing tactics, and playing whenever life and deadlines allow.</li>
+            <li>Trying new coffee variations and pretending it’s “for productivity” and not just because it tastes good.</li>
+          </ul>
+          <p class="note">
+            Long‑term dream: teach, research, and still have time to chase good light and good football matches.
+          </p>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <footer class="max-w-5xl mx-auto px-6 py-20 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-mono tracking-widest text-slate-600">
-        <p>DESIGNED BY ARUSHI MARWAHA © 2026</p>
-        <div class="flex gap-8">
-            <a href="https://www.linkedin.com/in/arushimarwaha/" class="hover:text-emerald-500">LINKEDIN</a>
-            <a href="mailto:arushimarwaha03@gmail.com" class="hover:text-emerald-500">EMAIL</a>
-            <a href="https://github.com" class="hover:text-emerald-500">GITHUB</a>
-        </div>
-    </footer>
+  <footer>
+    Brewed with black coffee and curiosity · © <span id="year"></span> Sanwaya Koner
+  </footer>
 
+  <script>
+    // Simple section navigation
+    const navButtons = document.querySelectorAll('.nav-link[data-section]');
+    const sections = document.querySelectorAll('main section');
+
+    function setActiveSection(id) {
+      sections.forEach(sec => {
+        sec.classList.toggle('hidden', sec.id !== id);
+      });
+      navButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.section === id);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setActiveSection(btn.dataset.section);
+      });
+    });
+
+    // Papers: internal view switch (no new tab, no new page)
+    const paperListView = document.getElementById('paper-list-view');
+    const paperDetailView = document.getElementById('paper-detail-view');
+    const paperDetails = document.querySelectorAll('.paper-detail');
+
+    function openPaper(paperId) {
+      paperListView.classList.add('hidden');
+      paperDetailView.classList.remove('hidden');
+      paperDetails.forEach(p => p.classList.add('hidden'));
+      const selected = document.getElementById(paperId);
+      if (selected) {
+        selected.classList.remove('hidden');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function backToPaperList() {
+      paperDetailView.classList.add('hidden');
+      paperListView.classList.remove('hidden');
+      paperDetails.forEach(p => p.classList.add('hidden'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
